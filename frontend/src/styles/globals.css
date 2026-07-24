@@ -1,0 +1,450 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=Geist:wght@400;500;600&display=swap');
+
+:root {
+  --bg-dark: #0a0d14;
+  --bg-surface: #141824;
+  --bg-container: rgba(22, 27, 40, 0.75);
+  --border-metallic: rgba(255, 213, 66, 0.22);
+  --brand-red: #f5273a;
+  --brand-yellow: #ffd542;
+  --brand-gradient: linear-gradient(135deg, #f5273a 0%, #ffd542 100%);
+  --brand-glow: rgba(245, 39, 58, 0.45);
+  --text-silver: #e2e8f0;
+  --text-muted: #94a3b8;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-silver);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Typography & Gradient Helpers */
+.font-sora {
+  font-family: 'Sora', sans-serif;
+}
+
+.font-geist {
+  font-family: 'Geist', monospace;
+}
+
+.brand-gradient-text {
+  background: var(--brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 20px rgba(245, 39, 58, 0.3);
+}
+
+.brand-glow-text {
+  color: var(--brand-yellow);
+  text-shadow: 0 0 15px rgba(255, 213, 66, 0.6);
+}
+
+.brand-glow-border {
+  box-shadow: 0 0 20px rgba(245, 39, 58, 0.35);
+}
+
+.brand-pulse {
+  animation: brandPulse 2s infinite ease-in-out;
+}
+
+@keyframes brandPulse {
+  0%, 100% { opacity: 1; filter: drop-shadow(0 0 6px rgba(245, 39, 58, 0.8)); }
+  50% { opacity: 0.7; filter: drop-shadow(0 0 18px rgba(255, 213, 66, 1)); }
+}
+
+/* Full Header Shell */
+.app-header {
+  background: rgba(10, 13, 20, 0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 0.5px solid rgba(255, 213, 66, 0.2);
+  padding: 0.85rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.brand-title {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.45rem;
+  font-weight: 800;
+  background: var(--brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
+  filter: drop-shadow(0 0 12px rgba(245, 39, 58, 0.3));
+}
+
+.brand-badge {
+  background: rgba(245, 39, 58, 0.12);
+  border: 1px solid rgba(255, 213, 66, 0.35);
+  color: var(--brand-yellow);
+  padding: 0.2rem 0.65rem;
+  border-radius: 4px;
+  font-family: 'Geist', monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* Full Viewport Main Container */
+.main-container {
+  max-width: 1550px;
+  width: 95%;
+  margin: 1.5rem auto;
+  padding: 0;
+}
+
+.portal-grid {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 1.75rem;
+  align-items: stretch;
+}
+
+@media (max-width: 992px) {
+  .portal-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Spacious Glassmorphism Panels */
+.glass-panel {
+  background: rgba(22, 27, 40, 0.75);
+  backdrop-filter: blur(24px);
+  border: 0.5px solid var(--border-metallic);
+  border-radius: 12px;
+  padding: 1.75rem 2rem;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 600px;
+}
+
+.panel-header {
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 0.5px solid rgba(255, 213, 66, 0.18);
+}
+
+.panel-title {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.panel-subtitle {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+  font-family: 'Geist', monospace;
+  letter-spacing: 0.8px;
+}
+
+/* Prominent Boarding Pass Cards */
+.tickets-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 0.35rem;
+}
+
+.tickets-container::-webkit-scrollbar {
+  width: 5px;
+}
+.tickets-container::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+.tickets-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 213, 66, 0.35);
+  border-radius: 4px;
+}
+
+.metallic-card {
+  background: linear-gradient(135deg, #151a28 0%, #20273c 100%);
+  border: 0.5px solid rgba(255, 213, 66, 0.28);
+  border-radius: 10px;
+  padding: 1.15rem 1.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  flex-shrink: 0;
+}
+
+.metallic-card:hover {
+  border-color: var(--brand-yellow);
+  box-shadow: 0 0 22px rgba(245, 39, 58, 0.35);
+  transform: translateY(-1px);
+}
+
+.metallic-indicator {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background: var(--brand-gradient);
+  box-shadow: 0 0 12px var(--brand-red);
+}
+
+.pass-seat-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 85px;
+}
+
+.seat-big-num {
+  font-family: 'Sora', sans-serif;
+  font-size: 2.35rem;
+  font-weight: 800;
+  background: var(--brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+  filter: drop-shadow(0 0 10px rgba(245, 39, 58, 0.55));
+}
+
+.seat-sublabel {
+  font-family: 'Geist', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 1.8px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-top: 0.2rem;
+}
+
+.pass-main-info {
+  flex-grow: 1;
+  border-left: 0.5px solid rgba(255, 213, 66, 0.18);
+  padding-left: 1.35rem;
+  margin-left: 1rem;
+}
+
+.pass-badge-crew {
+  display: inline-block;
+  background: rgba(245, 39, 58, 0.15);
+  border: 1px solid rgba(255, 213, 66, 0.35);
+  color: var(--brand-yellow);
+  font-size: 0.65rem;
+  font-family: 'Geist', monospace;
+  font-weight: 600;
+  padding: 0.12rem 0.5rem;
+  border-radius: 3px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.pass-crew-name {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.pass-meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+  margin-top: 0.45rem;
+}
+
+.pass-meta-item label {
+  font-family: 'Geist', monospace;
+  font-size: 0.64rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: block;
+}
+
+.pass-meta-item span {
+  font-family: 'Geist', monospace;
+  font-size: 0.85rem;
+  color: var(--text-silver);
+  font-weight: 500;
+}
+
+/* Action Buttons */
+.pass-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.action-btn-icon {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 0.5px solid var(--border-metallic) !important;
+  color: var(--text-silver) !important;
+  transition: all 0.2s ease !important;
+}
+
+.action-btn-icon:hover {
+  background: var(--brand-gradient) !important;
+  color: #ffffff !important;
+  border-color: var(--brand-yellow) !important;
+  box-shadow: 0 0 12px rgba(245, 39, 58, 0.5) !important;
+}
+
+/* Submit Button */
+.submit-btn-brand {
+  background: linear-gradient(90deg, #f5273a 0%, #ffd542 100%) !important;
+  color: #0b0e14 !important;
+  border: none !important;
+  height: 50px !important;
+  font-family: 'Sora', sans-serif !important;
+  font-size: 1.05rem !important;
+  font-weight: 800 !important;
+  border-radius: 6px !important;
+  box-shadow: 0 0 25px rgba(245, 39, 58, 0.45) !important;
+  letter-spacing: 0.5px !important;
+  text-transform: uppercase !important;
+}
+
+.submit-btn-brand:hover {
+  opacity: 0.95;
+  box-shadow: 0 0 32px rgba(255, 213, 66, 0.7) !important;
+}
+
+/* Ant Design Form Prominent Spacing */
+.ant-form-item {
+  margin-bottom: 1rem !important;
+}
+
+.ant-form-item-label {
+  padding-bottom: 0.25rem !important;
+}
+
+.ant-form-item-label > label {
+  font-family: 'Geist', monospace !important;
+  font-size: 0.75rem !important;
+  color: var(--text-muted) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1.5px !important;
+  font-weight: 600 !important;
+}
+
+.ant-input, .ant-picker, .ant-select-selector {
+  border-radius: 5px !important;
+}
+
+/* Print Specific Styling */
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+  
+  #printable-boarding-passes,
+  #printable-boarding-passes * {
+    visibility: visible !important;
+  }
+
+  #printable-boarding-passes {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    padding: 1.5rem !important;
+    border: none !important;
+    box-shadow: none !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .print-hide-controls {
+    display: none !important;
+  }
+
+  .panel-title {
+    color: #000000 !important;
+  }
+
+  .panel-subtitle {
+    color: #555555 !important;
+  }
+
+  .crew-meta-bar {
+    background: #f1f5f9 !important;
+    border: 1px solid #cbd5e1 !important;
+    color: #000000 !important;
+  }
+
+  .crew-meta-bar strong {
+    color: #000000 !important;
+  }
+
+  .tickets-container {
+    overflow: visible !important;
+    height: auto !important;
+  }
+
+  .metallic-card {
+    background: #ffffff !important;
+    border: 1px solid #000000 !important;
+    box-shadow: none !important;
+    color: #000000 !important;
+    margin-bottom: 0.75rem !important;
+    page-break-inside: avoid;
+  }
+
+  .seat-big-num {
+    color: #f5273a !important;
+    -webkit-text-fill-color: #f5273a !important;
+    text-shadow: none !important;
+    filter: none !important;
+  }
+
+  .pass-crew-name {
+    color: #000000 !important;
+  }
+
+  .pass-badge-crew {
+    background: #fee2e2 !important;
+    border: 1px solid #f87171 !important;
+    color: #991b1b !important;
+  }
+
+  .pass-meta-item span {
+    color: #000000 !important;
+  }
+
+  .pass-meta-item label {
+    color: #666666 !important;
+  }
+}

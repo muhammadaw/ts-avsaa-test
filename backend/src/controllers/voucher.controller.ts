@@ -67,4 +67,18 @@ export async function generateVoucherController(
   }
 }
 
-
+export async function getHistoryController(
+  _req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
+  try {
+    const history = await getVoucherHistory();
+    res.status(200).json({
+      success: true,
+      history,
+    });
+  } catch (err) {
+    next(err);
+  }
+}

@@ -36,4 +36,20 @@ export async function createVoucherRecord(params: CreateVoucherParams) {
   });
 }
 
+export async function getVoucherHistory(limit = 20) {
+  const records = await prisma.voucher.findMany({
+    orderBy: { created_at: "desc" },
+    take: limit,
+  });
 
+  return records.map(r => ({
+    id: r.id,
+    crewName: r.crew_name,
+    crewId: r.crew_id,
+    flightNumber: r.flight_number,
+    flightDate: r.flight_date,
+    aircraftType: r.aircraft_type,
+    seats: [r.seat1, r.seat2, r.seat3],
+    createdAt: r.created_at,
+  }));
+}

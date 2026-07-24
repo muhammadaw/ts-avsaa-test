@@ -1,11 +1,15 @@
 "use client";
 
 import React, { useState } from "react";
+import { Button } from "antd";
+import { HistoryOutlined } from "@ant-design/icons";
 import { VoucherForm, AssignmentResult } from "@/components/VoucherForm";
 import { BoardingPassResult } from "@/components/BoardingPassResult";
+import { HistoryDrawer } from "@/components/HistoryDrawer";
 
 export default function Home() {
   const [result, setResult] = useState<AssignmentResult | null>(null);
+  const [historyOpen, setHistoryOpen] = useState(false);
 
   return (
     <main style={{ minHeight: "100vh", position: "relative" }}>
@@ -29,7 +33,14 @@ export default function Home() {
         </div>
 
         <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-
+          <Button
+            icon={<HistoryOutlined />}
+            onClick={() => setHistoryOpen(true)}
+            className="action-btn-icon"
+            style={{ display: "flex", alignItems: "center", gap: "0.3rem" }}
+          >
+            History
+          </Button>
 
           <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
             <div className="brand-pulse" style={{ width: "7px", height: "7px", borderRadius: "50%", backgroundColor: "#f5273a" }} />
@@ -54,7 +65,11 @@ export default function Home() {
         </div>
       </div>
 
-
+      <HistoryDrawer
+        open={historyOpen}
+        onClose={() => setHistoryOpen(false)}
+        onSelectRecord={(rec) => setResult(rec)}
+      />
 
       <div style={{ position: "fixed", top: 0, left: 0, width: "100%", height: "100%", pointerEvents: "none", zIndex: -10, overflow: "hidden" }}>
         <div style={{ position: "absolute", top: "15%", right: "-10%", width: "450px", height: "450px", background: "rgba(245, 39, 58, 0.04)", borderRadius: "50%", filter: "blur(120px)" }} />

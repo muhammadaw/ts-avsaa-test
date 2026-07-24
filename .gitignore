@@ -1,0 +1,15 @@
+node_modules/
+**/node_modules/
+.pnpm-store/
+
+.next/
+frontend/.next/
+out/
+build/
+dist/
+*.tsbuildinfo
+
+.env
+.env*.local
+.env.production
+.env.development
